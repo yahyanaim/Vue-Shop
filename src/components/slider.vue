@@ -1,130 +1,151 @@
 <template>
-<header class="hero">
-      <div class="container spacing">
-        <h1 class="primary-title">It's okay to be a little obsessed with shoes</h1>
-        <p style="color: white;
-    font-size: 16px;
-    line-height: 1.8;">
-          Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, <br>
-          Sed Do Eiuiana Smod Tempor Ut Labore Et Dolore Magna Aliqua. <br>
-          Ut Enim Ad Minim Veniam, <br>
-          Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip. <br>
-        </p>
-        <a href="#" class="btn">See what we have</a>
+  <header class="hero">
+    <div class="container spacing">
+      <h1 class="primary-title">
+        It's okay to be a little obsessed with shoes
+      </h1>
+      <p style="color: white; font-size: 16px; line-height: 1.8">
+        Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, <br />
+        Sed Do Eiuiana Smod Tempor Ut Labore Et Dolore Magna Aliqua. <br />
+        Ut Enim Ad Minim Veniam, <br />
+        Quis Nostrud Exercitation Ullamco Laboris Nisi Ut Aliquip. <br />
+      </p>
+      <a href="#" class="btn">See what we have</a>
+    </div>
+  </header>
+
+  <main id="features">
+    <section  id="sneakers" class="featured">
+      <div class="container">
+        <h2 class="section-title">Featured sneakers</h2>
+        <div class="split">
+          <a v-for="feature in features" :key="feature.id" href="#" class="featured__item">
+            <img class="featured__img" :src="feature.imgSrc"/>
+            <p class="featured__details">
+              <span class="price">{{ feature.price }}$</span>{{ feature.name }}
+            </p>
+          </a>
+        </div>
       </div>
-    </header>
-    <main>
-      <section class="featured">
-        <div class="container">
-          <h2 class="section-title">Featured sneakers</h2>
-          <div class="split">
-            <a href="#" class="featured__item">
-              <img
-                src="https://github.com/kevin-powell/shoes/blob/master/img/shoe-4.png?raw=true"
-                alt=""
-                class="featured__img"
-              />
-              <p class="featured__details">
-                <span class="price">$99</span>shoe name
-              </p>
-            </a>
-            <a href="#" class="featured__item">
-              <img
-                src="https://github.com/kevin-powell/shoes/blob/master/img/shoe-5.png?raw=true"
-                alt=""
-                class="featured__img"
-              />
-              <p class="featured__details">
-                <span class="price">$99</span>shoe name
-              </p>
-            </a>
-            <a href="#" class="featured__item">
-              <img
-                src="https://github.com/kevin-powell/shoes/blob/master/img/shoe-6.png?raw=true"
-                alt=""
-                class="featured__img"
-              />
-              <p class="featured__details">
-                <span class="price">$99</span>shoe name
-              </p>
+    </section>
+
+    <section id="sneakers" class="our-products">
+      <h2 class="section-title">Our sneakers</h2>
+      <div class="container1">
+        <div v-for="product in products" :key="product.id" class="card">
+          <div class="imgBx">
+            <img :src="product.imgSrc" />
+          </div>
+          <div class="contentBx">
+            <h2>{{ product.name }}</h2>
+            <div class="size">
+              <h1>{{ product.price }} $</h1>
+            </div>
+            <a
+              id="add-to-cart"
+              type="button"
+              @click.prevent="addProdToCart(product)"
+              >Add to Cart
             </a>
           </div>
         </div>
-         
-      </section>
-      
-      <section class="our-products">
-
-          <h2 class="section-title">Our sneakers</h2>
-
-        
-         <div class="container1">
-  <div class="card">
-    <div class="imgBx">
-      <img src="https://assets.codepen.io/4164355/shoes.png">
-    </div>
-    <div class="contentBx">
-      <h2>Nike Shoes</h2>
-            <div class="size">
-        <h1>199.99$</h1>
       </div>
-      <a href="#">Buy Now</a>
-    </div>
-  </div>
-
-<div class="card">
-    <div class="imgBx">
-       <img src="../assets/img4.png"/> 
-    </div>
-    <div class="contentBx">
-      <h2>Nike Shoes</h2>
-      <div class="size">
-        <h1>199.99$</h1>
-      </div>
-      <a href="#">Buy Now</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="imgBx">
-       <img src="../assets/img11.png"/> 
-    </div>
-    <div class="contentBx">
-      <h2>Nike Shoes</h2>
-      <div class="size">
-        <h1>199.99$</h1>
-      </div>
-      <a href="#">Buy Now</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="imgBx">
-       <img src="../assets/img1.png"/> 
-    </div>
-    <div class="contentBx">
-      <h2>Nike Shoes</h2>
-           <div class="size">
-        <h1>199.99$</h1>
-      </div>
-      <a href="#">Buy Now</a>
-    </div>
-  </div>
-
-</div>
-        
-      </section>
-    </main>
+    </section>
+  </main>
 </template>
 
 <script>
+
 export default {
-}
+  name: "slider",
+  inject: ["GBstate"],
+  data: () => ({
+    products: [
+      {
+        id: 1,
+        imgSrc: "https://assets.codepen.io/4164355/shoes.png",
+        name: "Nike 1",
+        price: 199,
+      },
+
+      {
+        id: 2,
+        imgSrc: "../Images/img11.png",
+        name: "Nike 2",
+        price: 150.0,
+      },
+
+      {
+        id: 3,
+        imgSrc: "../Images/img4.png",
+        name: "Nike 3",
+        price: 350.0,
+      },
+
+      {
+        id: 4,
+        imgSrc: "../Images/img1.png",
+        name: "Nike 4",
+        price: 250.0,
+      },
+    ],
+
+    // Features Products
+    features: [
+      {
+       id: 6,
+        imgSrc: "../Images/shoe-4.png",
+        name: "Adiddas 1",
+        price: 99,
+      },
+
+       {
+        id: 7,
+        imgSrc: "../Images/shoe-5.png",
+        name: "Adiddas 2",
+        price: 99,
+      },
+       {
+        id: 8,
+        imgSrc: "../Images/shoe-6.png",
+        name: "Adiddas 3",
+        price: 99,
+      },
+    ]   
+  }),
+  methods: {
+    // if the product is already in the cart,
+    // increase its quantity by 1
+    // else create a new object with the
+    // selected product info and push it
+    // into the GBstate.cartItems array.
+    // Decrease stock quantity when item is
+    // added to the cart
+    addProdToCart(prod) {
+      // this.GBstate.isCartView = true;
+      for (let i = 0; i < this.GBstate.cartItems.length; i++) {
+        if (this.GBstate.cartItems[i].item.id === prod.id) {
+          this.GBstate.cartItems[i].quantity++;
+          return;
+        }
+      }
+      this.GBstate.cartItems.push({
+        item: prod,
+        quantity: 1,
+      });
+
+      // decrease stock when product
+      // is added to the cart
+      //console.log(this.GBstate.cartItems);
+      // prod.inStock--;
+    },
+  },
+};
 </script>
 
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
 
 *,
 *::before,
@@ -135,7 +156,7 @@ export default {
 /* layout */
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   line-height: 1.6;
 }
@@ -150,12 +171,12 @@ h2,
 h3,
 p {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 section {
   padding: 7rem 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .container {
@@ -192,7 +213,7 @@ section {
 }
 
 .btn {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: inline-block;
   text-decoration: none;
   color: var(--clr-text, #fff);
@@ -221,6 +242,7 @@ section {
 }
 
 .section-title {
+  font-weight: 500;
   text-align: center;
   font-size: 3.5rem;
   font-size: clamp(2.5rem, calc(5vw + 1rem), 4rem);
@@ -252,7 +274,7 @@ section {
 /* featured section */
 
 .featured {
-    background: #f8f9fc;
+  background: #f8f9fc;
 }
 
 .featured__item {
@@ -319,7 +341,6 @@ section {
   line-height: 1;
   color: #fff;
   text-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.2);
-  
 }
 
 .product__image {
@@ -375,12 +396,11 @@ section {
   --clr-accent: #008951;
 }
 
-
-.container1{
+.container1 {
   position: relative;
 }
 
-.container1 .card{
+.container1 .card {
   position: relative;
   width: 320px;
   height: 450px;
@@ -389,8 +409,8 @@ section {
   overflow: hidden;
 }
 
-.container1 .card:before{
-  content: '';
+.container1 .card:before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -401,22 +421,22 @@ section {
   transition: 0.5s ease-in-out;
 }
 
-.container1 .card:hover:before{
+.container1 .card:hover:before {
   clip-path: circle(300px at 80% -20%);
 }
 
-.container1 .card:after{
-  content: 'Nike';
+.container1 .card:after {
+  content: "Nike";
   position: absolute;
   top: 30%;
   left: -20%;
   font-size: 12em;
   font-weight: 800;
   font-style: italic;
-  color: rgba(255,255,25,0.05)
+  color: rgba(255, 255, 25, 0.05);
 }
 
-.container1 .card .imgBx{
+.container1 .card .imgBx {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -426,13 +446,12 @@ section {
   transition: 0.5s;
 }
 
-.container1 .card:hover .imgBx{
+.container1 .card:hover .imgBx {
   top: 0%;
   transform: translateY(0%);
-    
 }
 
-.container1 .card .imgBx img{
+.container1 .card .imgBx img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -440,7 +459,7 @@ section {
   width: 270px;
 }
 
-.container1 .card .contentBx{
+.container1 .card .contentBx {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -450,11 +469,11 @@ section {
   z-index: 10;
 }
 
-.container1 .card:hover .contentBx{
+.container1 .card:hover .contentBx {
   height: 210px;
 }
 
-.container1 .card .contentBx h1{
+.container1 .card .contentBx h1 {
   position: relative;
   font-weight: 500;
   font-size: 25px;
@@ -463,37 +482,40 @@ section {
   margin: 2px;
 }
 
-.container1 .card .contentBx h2{
+.container1 .card .contentBx h2 {
   font-weight: 700;
   font-size: 25px;
   letter-spacing: 1px;
   color: #fff;
   margin: 2px;
 }
-.container1 .card .contentBx .size, .container1 .card .contentBx .color {
+.container1 .card .contentBx .size,
+.container1 .card .contentBx .color {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 8px 20px;
-  transition: 0.5s;opacity: 0;
+  transition: 0.5s;
+  opacity: 0;
   visibility: hidden;
   padding-top: 0;
   padding-bottom: 0;
 }
 
-.container1 .card:hover .contentBx .size{
+.container1 .card:hover .contentBx .size {
   opacity: 1;
   visibility: visible;
   transition-delay: 0.5s;
 }
 
-.container1 .card:hover .contentBx .color{
+.container1 .card:hover .contentBx .color {
   opacity: 1;
   visibility: visible;
   transition-delay: 0.6s;
 }
 
-.container1 .card .contentBx .size h3, .container .card .contentBx .color h3{
+.container1 .card .contentBx .size h3,
+.container .card .contentBx .color h3 {
   color: #fff;
   font-weight: 300;
   font-size: 14px;
@@ -502,7 +524,7 @@ section {
   margin-right: 10px;
 }
 
-.container1 .card .contentBx .size span{
+.container1 .card .contentBx .size span {
   width: 26px;
   height: 26px;
   text-align: center;
@@ -518,11 +540,11 @@ section {
   cursor: pointer;
 }
 
-.container1 .card .contentBx .size span:hover{
+.container1 .card .contentBx .size span:hover {
   background: #9bdc28;
 }
 
-.container1 .card .contentBx .color span{
+.container1 .card .contentBx .color span {
   width: 20px;
   height: 20px;
   background: #ff0;
@@ -531,19 +553,19 @@ section {
   cursor: pointer;
 }
 
-.container1 .card .contentBx .color span:nth-child(2){
+.container1 .card .contentBx .color span:nth-child(2) {
   background: #9bdc28;
 }
 
-.container1 .card .contentBx .color span:nth-child(3){
+.container1 .card .contentBx .color span:nth-child(3) {
   background: #03a9f4;
 }
 
-.container1 .card .contentBx .color span:nth-child(4){
+.container1 .card .contentBx .color span:nth-child(4) {
   background: #e91e63;
 }
 
-.container1 .card .contentBx a{
+.container1 .card .contentBx a {
   display: inline-block;
   padding: 10px 20px;
   background: #fff;
@@ -558,22 +580,21 @@ section {
   margin-top: 0;
 }
 
-.container1 .card:hover .contentBx a{
+.container1 .card:hover .contentBx a {
   opacity: 1;
   transform: translateY(0px);
   transition-delay: 0.75s;
-  
+}
+a {
+  cursor: pointer;
 }
 
-@media (min-width: 5rem){
+@media (min-width: 5rem) {
   .container1 {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
+  }
 }
-
-}
-
-
 </style>

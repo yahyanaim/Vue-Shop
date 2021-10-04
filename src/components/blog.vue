@@ -1,6 +1,6 @@
 <template>
  
- <h1 class="section-title">Our Partner</h1>
+ <h1 id="partner" class="section-title">Our Partner</h1>
 <div class="slider">
 	<div class="slide-track">
 		<div class="slide">
@@ -34,23 +34,26 @@
 				<img src="../assets/img9.png" height="100" width="250" alt="" />
 		</div>
 
-    
+       
 	</div>
+<div>
+	<a href="#"><i class="fas fa-arrow-circle-up"></i></a>
+</div>	
 </div>
-
 
 </template>
 
+<script>
+export default {
+	name: "blog" , 
+}
+</script>
+
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-// body {
-// 	align-items: center;
-// 	background: #e3e3e3;
-// 	display: flex;
-// 	height: 100vh;
-// 	justify-content: center;
-// }
+
 .section-title {
+	font-weight: 500;
     text-align: center;
      font-family: "Poppins" , sans-serif;
     font-size: 3.5rem;
@@ -59,7 +62,7 @@
     color: #17353d;
     margin-bottom: 5rem;
     -webkit-text-decoration: underline gold;
-    text-decoration: underline gold;
+    text-decoration: underline rgba(255, 217, 0, 0.856);
     text-underline-offset: 0.3em;
     // position: relative;
     // top: 80px;
@@ -87,10 +90,7 @@ $animationSpeed: 40s;
 
 // Styling
 .slider {
-    // position: relative;
-    // top:-28px;
-	background: white;
-	// box-shadow: 0 10px 20px -5px rgba(177, 177, 177, 0.125);
+  
 	height: 100px;
 	margin: auto;
 	overflow: hidden;
@@ -100,7 +100,7 @@ $animationSpeed: 40s;
 
 	&::before,
 	&::after {
-		@include white-gradient;
+		// @include white-gradient;
 		content: "";
 		height: 100px;
 		position: absolute;
@@ -133,11 +133,6 @@ $animationSpeed: 40s;
 }
 
 
-//         @media (min-width: 25rem){
-//   .slide{
-  
-// }
-//        }
     
 @media only screen and (max-width: 1000px) {
   .slider {
